@@ -28,7 +28,7 @@ function App(): JSX.Element {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [creator, setCreator] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<{ base64: string } | undefined>(undefined);
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -121,13 +121,18 @@ function App(): JSX.Element {
         const updatedPost = posts.filter((post) => post.title === title);
         console.log(updatedPost[0]._id);
         window.alert("Post got updated");
-        api.post(`/${updatedPost[0]._id}`, {
-          message: message,
-          // If you wanted to change the Image as well:
-          // selectedFile: image.base64,
-          // createdAt: date
-        });
-        window.location.reload();
+        api
+          .post(`/${updatedPost[0]._id}`, {
+            message: message,
+            selectedFile: image?.base64, // Access the base64 property using the optional chaining operator (?.)
+            createdAt: date,
+          })
+          .then(() => {
+            window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
       }
     } else {
       api
@@ -135,16 +140,15 @@ function App(): JSX.Element {
           title: title,
           message: message,
           creator: creator,
-          //selectedFile: image.base64,
+          selectedFile: image?.base64, // Access the base64 property using the optional chaining operator (?.)
           createdAt: date,
         })
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error.message);
         });
-      window.location.reload();
     }
   };
 
@@ -152,7 +156,7 @@ function App(): JSX.Element {
     setTitle("");
     setMessage("");
     setCreator("");
-    setImage("");
+    setImage(undefined);
   };
 
   return (
@@ -200,6 +204,7 @@ function App(): JSX.Element {
                   creatorChangeHandler={creatorChangeHandler}
                   setImage={setImage}
                   clearForm={clearForm}
+                  image={image}
                 />
               </Grid>
             </Grid>

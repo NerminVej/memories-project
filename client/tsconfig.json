@@ -14,7 +14,7 @@
       "images/*": ["src/images/*"]
       }
     },
-    "include": ["src", "src/images", "custom.d.ts"],
+    "include": ["src", "src/images", "custom.d.ts", "react-file-base64.d.ts"],
       "exclude": []
   }
   

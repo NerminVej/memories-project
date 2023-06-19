@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Paper } from "@mui/material";
 import { blue, red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { FormPaper, FormSubmitButton, FormTextBoxes } from "./styles";
-//import FileBase64 from 'react-file-base64';
+import FileBase64 from "react-file-base64";
 type CustomTheme = typeof theme;
 const theme = createTheme({
   palette: {
@@ -16,7 +16,8 @@ interface FormProps {
   title: string;
   message: string;
   creator: string;
-  setImage: (image: any) => void;
+  image: { base64: string } | undefined; // Update the type
+  setImage: (image: { base64: string } | undefined) => void; // Update the type
   titleChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   messageChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   creatorChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -66,11 +67,13 @@ const Form: React.FC<FormProps> = ({
               value={message}
             />
             <div>
-              {/* <FileBase64
+              <FileBase64
                 type="file"
                 multiple={false}
-                onDone={({ base64 }) => setImage({ base64 })}
-              />*/}
+                onDone={({ base64 }: { base64: string }) =>
+                  setImage({ base64 })
+                }
+              />
             </div>
             <FormSubmitButton
               variant="contained"
