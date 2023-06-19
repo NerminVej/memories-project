@@ -1,8 +1,8 @@
-import React, { ChangeEvent } from 'react';
-import { TextField, Button, Typography, Paper } from '@mui/material';
-import { blue, red } from '@mui/material/colors';
-import { ThemeProvider,createTheme } from '@mui/material/styles';
-import { FormPaper, FormSubmitButton, FormTextBoxes } from './styles';
+import React, { ChangeEvent } from "react";
+import { TextField, Button, Typography, Paper } from "@mui/material";
+import { blue, red } from "@mui/material/colors";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { FormPaper, FormSubmitButton, FormTextBoxes } from "./styles";
 //import FileBase64 from 'react-file-base64';
 type CustomTheme = typeof theme;
 const theme = createTheme({
@@ -38,7 +38,7 @@ const Form: React.FC<FormProps> = ({
   return (
     <div>
       <ThemeProvider theme={theme as CustomTheme}>
-        <FormPaper >
+        <FormPaper>
           <form autoComplete="off" noValidate>
             <Typography variant="h6">Creating a Memory</Typography>
             <FormTextBoxes

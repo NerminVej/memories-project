@@ -56,10 +56,18 @@ function App(): JSX.Element {
     updatedPosts[postIndex].likeCount += 1;
     const likeCounter = updatedPosts[postIndex].likeCount;
     console.log(updatedPosts[postIndex].likeCount);
-    api.post(`/${id}`, {
-      likeCount: likeCounter,
-    });
-    window.location.reload();
+
+    api
+      .post(`/${id}`, {
+        likeCount: likeCounter,
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        // Handle error if the POST request fails
+        console.error(error);
+      });
   };
 
   const deletePost = (id: string): void => {
