@@ -1,0 +1,32 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.like-button {
+  @apply bg-blue-500 text-white px-2 py-1 rounded mr-2;
+}
+
+.delete-button {
+  @apply bg-red-500 text-white px-2 py-1 rounded;
+}
+
+.container {
+  @apply max-w-2xl mx-auto px-4 py-8;
+}
+
+.card {
+  @apply bg-white shadow-md rounded-lg;
+}
+
+.title {
+    @apply text-3xl font-bold mb-2 text-gray-800;
+  }
+  
+  .message {
+    @apply text-lg mb-4 text-gray-600;
+  }
+  
+
+.creator {
+  @apply text-sm text-gray-500 mb-4;
+}

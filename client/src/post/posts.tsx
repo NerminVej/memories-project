@@ -44,58 +44,62 @@ const Posts: React.FC<PostsProps> = ({
   image,
 }) => {
   return (
-    <div>
-      <PostCard>
-        {/* h2 variant*/}
-        <CardMedia component="img" src={image} alt="Post image" />
-        <div
-          style={{
-            position: "absolute",
-            top: "20px",
-            left: "20px",
-            color: "white",
-          }}
-        >
-          <Typography variant="h6">{creator}</Typography>
-          <Typography variant="body2">{moment(createdAt).fromNow()}</Typography>
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            color: "white",
-          }}
-        >
-          <Button>
-            {/* fontsize */} <MoreHoriz />
-          </Button>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "20px",
-          }}
-        >
-          <Typography variant="body2"></Typography>
-        </div>
-        <div style={{ padding: "0 16px" }}>
-          <Typography variant="h5">{title}</Typography>
-          <CardContent>
-            <Typography>{message}</Typography>
-          </CardContent>
-          <PostCardAction>
-            <Button size="small" color="primary" onClick={likeIncrement}>
-              {likeCount}
-              <ThumbUpIcon fontSize="small" />
-            </Button>
-            <Button size="small" color="secondary" onClick={deletePost}>
-              Delete
-            </Button>
-          </PostCardAction>
-        </div>
-      </PostCard>
+    <div className="container">
+<Card className="card relative">
+  {/* h2 variant*/}
+  <CardMedia component="img" src={image} alt="Post image" />
+
+  <div className="flex items-center justify-between p-4">
+    <div className="flex flex-col absolute top-2 left-2">
+      <Typography variant="h6" className="creator text-xl font-semibold mb-1">
+        {creator}
+      </Typography>
+      <Typography variant="body2" className="text-gray-500">
+        {moment(createdAt).fromNow()}
+      </Typography>
+    </div>
+    <div className="absolute top-2 right-2">
+    <Button className="text-gray-500">
+      <MoreHoriz />
+    </Button>
+  </div>
+  </div>
+
+  <div className="flex justify-between m-5">
+    <Typography variant="body2"></Typography>
+  </div>
+  <div className="p-0.5">
+    <Typography variant="h5" className="text-xl">
+      {title}
+    </Typography>
+    <CardContent >
+      <Typography className="message">{message}</Typography>
+    </CardContent>
+    <PostCardAction className="flex space-x-2">
+      <Button
+        className="like-button"
+        size="small"
+        color="primary"
+        onClick={likeIncrement}
+        startIcon={<ThumbUpIcon fontSize="small" />}
+        variant="contained"
+        disableElevation
+      >
+        {likeCount}
+      </Button>
+      <Button
+        className="delete-button"
+        size="small"
+        color="secondary"
+        onClick={deletePost}
+        variant="outlined"
+      >
+        Delete
+      </Button>
+    </PostCardAction>
+  </div>
+</Card>
+
     </div>
   );
 };

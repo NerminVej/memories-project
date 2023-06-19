@@ -7,6 +7,8 @@ import { MyAppBar } from "./styles";
 import Post from "./post/posts";
 import Form from "./form/forms";
 import memoriesPicture from "./images/memories.png";
+import './tailwind.css';
+
 
 const api = axios.create({
   baseURL: "http://localhost:5000/posts/",
