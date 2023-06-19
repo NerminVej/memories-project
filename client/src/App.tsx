@@ -77,8 +77,15 @@ function App(): JSX.Element {
     if (decision !== "yes") {
       window.alert("Invalid input");
     } else if (decision.toLowerCase() === "yes") {
-      api.delete(`/${id}`);
-      window.location.reload();
+      api
+        .delete(`/${id}`)
+        .then(() => {
+          window.location.reload();
+        })
+        .catch((error) => {
+          // Handle error if the DELETE request fails
+          console.error(error);
+        });
     } else if (decision === null) {
       window.alert("Delete was canceled");
     }
