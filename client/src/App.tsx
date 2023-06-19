@@ -7,8 +7,7 @@ import { MyAppBar } from "./styles";
 import Post from "./post/posts";
 import Form from "./form/forms";
 import memoriesPicture from "./images/memories.png";
-import './tailwind.css';
-
+import "./tailwind.css";
 
 const api = axios.create({
   baseURL: "http://localhost:5000/posts/",
@@ -111,6 +110,31 @@ function App(): JSX.Element {
 
   const addPost = (): void => {
     setDate(new Date());
+
+    // Input validation
+    if (title.trim() === "") {
+      window.alert("Please enter a valid title.");
+      return;
+    }
+
+    if (message.trim() === "") {
+      window.alert("Please enter a valid message.");
+      return;
+    }
+
+    if (creator.trim() === "") {
+      window.alert("Please enter a valid creator name.");
+      return;
+    }
+
+    if (image && image.base64) {
+      const fileType = image.base64.split(",")[0].split(";")[0].split(":")[1];
+      if (!["image/png", "image/jpg", "image/jpeg"].includes(fileType)) {
+        window.alert("Please select a PNG, JPG, or JPEG file.");
+        return;
+      }
+    }
+
     if (
       posts.find((post) => post.title === title && post.creator === creator)
     ) {
@@ -126,7 +150,7 @@ function App(): JSX.Element {
         api
           .post(`/${updatedPost[0]._id}`, {
             message: message,
-            selectedFile: image?.base64, // Access the base64 property using the optional chaining operator (?.)
+            selectedFile: image?.base64,
             createdAt: date,
           })
           .then(() => {
@@ -142,7 +166,7 @@ function App(): JSX.Element {
           title: title,
           message: message,
           creator: creator,
-          selectedFile: image?.base64, // Access the base64 property using the optional chaining operator (?.)
+          selectedFile: image?.base64,
           createdAt: date,
         })
         .then(() => {
@@ -163,24 +187,19 @@ function App(): JSX.Element {
 
   return (
     <div>
-      <Container>
+      <Container className="py-8">
         <MyAppBar position="static" color="inherit">
           <MemoryHeader variant="h2" align="center">
             Memory
           </MemoryHeader>
-          <img src={memoriesPicture} alt="memories" height={60} />{" "}
+          <img src={memoriesPicture} alt="memories" height={60} />
         </MyAppBar>
         <Grow in>
           <Container>
-            <Grid
-              container
-              justifyContent="space-between"
-              alignItems="stretch"
-              spacing={3}
-            >
-              <Grid item xs={12} sm={7}>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div>
                 {posts.map((post) => (
-                  <Grid key={post._id}>
+                  <div key={post._id} className="mb-6">
                     <Post
                       title={post.title}
                       message={post.message}
@@ -191,11 +210,10 @@ function App(): JSX.Element {
                       likeIncrement={() => likeIncrement(post._id)}
                       deletePost={() => deletePost(post._id)}
                     />
-                  </Grid>
+                  </div>
                 ))}
-              </Grid>
-              <Grid item xs={12} sm={4}>
-                {/* image={image} got removed by me*/}
+              </div>
+              <div>
                 <Form
                   title={title}
                   titleChangeHandler={titleChangeHandler}
@@ -208,8 +226,8 @@ function App(): JSX.Element {
                   clearForm={clearForm}
                   image={image}
                 />
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </Container>
         </Grow>
       </Container>

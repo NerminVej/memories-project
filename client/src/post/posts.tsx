@@ -45,61 +45,64 @@ const Posts: React.FC<PostsProps> = ({
 }) => {
   return (
     <div className="container">
-<Card className="card relative">
-  {/* h2 variant*/}
-  <CardMedia component="img" src={image} alt="Post image" />
+      <Card className="card relative">
+        {/* h2 variant*/}
 
-  <div className="flex items-center justify-between p-4">
-    <div className="flex flex-col absolute top-2 left-2">
-      <Typography variant="h6" className="creator text-xl font-semibold mb-1">
-        {creator}
-      </Typography>
-      <Typography variant="body2" className="text-gray-500">
-        {moment(createdAt).fromNow()}
-      </Typography>
-    </div>
-    <div className="absolute top-2 right-2">
-    <Button className="text-gray-500">
-      <MoreHoriz />
-    </Button>
-  </div>
-  </div>
+        <CardMedia component="img" src={image} />
 
-  <div className="flex justify-between m-5">
-    <Typography variant="body2"></Typography>
-  </div>
-  <div className="p-0.5">
-    <Typography variant="h5" className="text-xl">
-      {title}
-    </Typography>
-    <CardContent >
-      <Typography className="message">{message}</Typography>
-    </CardContent>
-    <PostCardAction className="flex space-x-2">
-      <Button
-        className="like-button"
-        size="small"
-        color="primary"
-        onClick={likeIncrement}
-        startIcon={<ThumbUpIcon fontSize="small" />}
-        variant="contained"
-        disableElevation
-      >
-        {likeCount}
-      </Button>
-      <Button
-        className="delete-button"
-        size="small"
-        color="secondary"
-        onClick={deletePost}
-        variant="outlined"
-      >
-        Delete
-      </Button>
-    </PostCardAction>
-  </div>
-</Card>
+        <div className="flex items-center justify-between p-4">
+          <div className="flex flex-col absolute top-2 left-2">
+            <Typography
+              variant="h6"
+              className="creator text-xl font-semibold mb-1"
+            >
+              {creator}
+            </Typography>
+            <Typography variant="body2" className="text-gray-500">
+              {moment(createdAt).fromNow()}
+            </Typography>
+          </div>
+          <div className="absolute top-2 right-2">
+            <Button className="text-gray-500">
+              <MoreHoriz />
+            </Button>
+          </div>
+        </div>
 
+        <div className="flex justify-between m-5">
+          <Typography variant="body2"></Typography>
+        </div>
+        <div className="p-0.5">
+          <Typography variant="h5" className="text-xl">
+            {title}
+          </Typography>
+          <CardContent>
+            <Typography className="message">{message}</Typography>
+          </CardContent>
+          <PostCardAction className="flex space-x-2">
+            <Button
+              className="like-button"
+              size="small"
+              color="primary"
+              onClick={likeIncrement}
+              startIcon={<ThumbUpIcon fontSize="small" />}
+              variant="contained"
+              disableElevation
+            >
+              {likeCount}
+            </Button>
+            <Button
+              className="delete-button"
+              size="small"
+              color="secondary"
+              onClick={deletePost}
+              variant="outlined"
+            >
+              Delete
+            </Button>
+          </PostCardAction>
+        </div>
+      </Card>
     </div>
   );
 };
