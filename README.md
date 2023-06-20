@@ -6,7 +6,7 @@
 
 ## Introduction
 
-![[memoriesstartingpage.png]]
+![](Attachments/memoriesstartingpage.png)
 
 
 This is a CRUD application that was built with the MERN stack which is a clone of the Instagram starting page.
