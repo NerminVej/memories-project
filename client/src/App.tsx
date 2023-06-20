@@ -9,10 +9,12 @@ import Form from "./form/forms";
 import memoriesPicture from "./images/memories.png";
 import "./tailwind.css";
 
+// Create an instance of axios with the base URL for API requests
 const api = axios.create({
   baseURL: "http://localhost:5000/posts/",
 });
 
+// Define the interface for a Post object
 interface Post {
   _id: string;
   title: string;
@@ -24,6 +26,7 @@ interface Post {
 }
 
 function App(): JSX.Element {
+  // State variables for managing posts and form data
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
@@ -32,6 +35,7 @@ function App(): JSX.Element {
   const [image, setImage] = useState<{ base64: string } | undefined>(undefined);
   const [date, setDate] = useState(new Date());
 
+  // Fetch data from the API when the component mounts
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
       try {
@@ -47,10 +51,12 @@ function App(): JSX.Element {
     fetchData();
   }, []);
 
+  // If data is still loading, show a loading message
   if (!isLoading) {
     return <div>Fetching Data please wait</div>;
   }
 
+  // Function to increment the like count for a post
   const likeIncrement = (id: string): void => {
     const updatedPosts = [...posts];
     const postIndex = updatedPosts.findIndex((post) => post._id === id);
@@ -71,6 +77,7 @@ function App(): JSX.Element {
       });
   };
 
+  // Function to delete a post
   const deletePost = (id: string): void => {
     const decision = window.prompt(
       "Do you really want to delete this entry? Type yes"
@@ -92,6 +99,7 @@ function App(): JSX.Element {
     }
   };
 
+  // Event handlers for form input changes
   const titleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value);
   };
@@ -108,6 +116,7 @@ function App(): JSX.Element {
     setCreator(e.target.value);
   };
 
+  // Function to add a new post or update an existing post
   const addPost = (): void => {
     setDate(new Date());
 
@@ -178,6 +187,7 @@ function App(): JSX.Element {
     }
   };
 
+  // Function to clear the form
   const clearForm = (): void => {
     setTitle("");
     setMessage("");
@@ -185,14 +195,20 @@ function App(): JSX.Element {
     setImage(undefined);
   };
 
+  // Render the component
   return (
     <div>
       <Container className="py-8">
-        <MyAppBar position="static" color="inherit">
+        <MyAppBar position="static" color="inherit" className="h-40">
           <MemoryHeader variant="h2" align="center">
             Memory
           </MemoryHeader>
-          <img src={memoriesPicture} alt="memories" height={60} />
+          <img
+            src={memoriesPicture}
+            alt="memories"
+            height={60}
+            className="h-40"
+          />
         </MyAppBar>
         <Grow in>
           <Container>

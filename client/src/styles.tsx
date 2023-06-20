@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { AppBar, Typography } from "@mui/material";
-
+// Styled component for the AppBar
 export const MyAppBar = styled(AppBar)(() => ({
   borderRadius: 15,
   margin: "30px",
@@ -11,7 +11,7 @@ export const MyAppBar = styled(AppBar)(() => ({
   padding: "20px",
   marginLeft: "15px",
 }));
-
+// Styled component for the Typography component
 export const MemoryHeader = styled(Typography)(() => ({
   color: "rgba(0, 122, 255, 1)",
 }));

@@ -20,11 +20,11 @@
 
 .title {
     @apply text-3xl font-bold mb-2 text-gray-800;
-  }
+}
   
-  .message {
+.message {
     @apply text-lg mb-4 text-gray-600;
-  }
+}
   
 
 .creator {
