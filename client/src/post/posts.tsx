@@ -15,6 +15,7 @@ import { MoreHoriz, ThumbUp as ThumbUpIcon } from "@mui/icons-material";
 import moment from "moment";
 import { PostCard, PostCardAction } from "./styles";
 
+// Define the props for the Posts component
 interface PostsProps {
   title: string;
   message: string;
@@ -26,6 +27,7 @@ interface PostsProps {
   image: string;
 }
 
+// Create a theme using MUI's createTheme function
 const theme = createTheme({
   palette: {
     primary: blue,
@@ -33,6 +35,7 @@ const theme = createTheme({
   },
 });
 
+// Define the Posts component
 const Posts: React.FC<PostsProps> = ({
   title,
   message,
@@ -45,11 +48,12 @@ const Posts: React.FC<PostsProps> = ({
 }) => {
   return (
     <div className="container">
+      {/* Card component */}
       <Card className="card relative">
-        {/* h2 variant*/}
-
+        {/* CardMedia component */}
         <CardMedia component="img" src={image} />
 
+        {/* Creator and timestamp */}
         <div className="flex items-center justify-between p-4">
           <div className="flex flex-col absolute top-2 left-2">
             <Typography
@@ -70,16 +74,22 @@ const Posts: React.FC<PostsProps> = ({
         </div>
 
         <div className="flex justify-between m-5">
+          {/* Additional content */}
           <Typography variant="body2"></Typography>
         </div>
         <div className="p-0.5">
+          {/* Title */}
           <Typography variant="h5" className="text-xl">
             {title}
           </Typography>
+          {/* CardContent component */}
           <CardContent>
+            {/* Message */}
             <Typography className="message">{message}</Typography>
           </CardContent>
+          {/* CardActions component */}
           <PostCardAction className="flex space-x-2">
+            {/* Like button */}
             <Button
               className="like-button"
               size="small"
@@ -91,6 +101,7 @@ const Posts: React.FC<PostsProps> = ({
             >
               {likeCount}
             </Button>
+            {/* Delete button */}
             <Button
               className="delete-button"
               size="small"

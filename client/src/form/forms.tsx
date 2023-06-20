@@ -4,7 +4,11 @@ import { blue, red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { FormPaper, FormSubmitButton, FormTextBoxes } from "./styles";
 import FileBase64 from "react-file-base64";
+
+// Define a custom type based on the theme object
 type CustomTheme = typeof theme;
+
+// Create a theme using MUI's createTheme function
 const theme = createTheme({
   palette: {
     primary: blue,
@@ -12,12 +16,13 @@ const theme = createTheme({
   },
 });
 
+// Define the props for the Form component
 interface FormProps {
   title: string;
   message: string;
   creator: string;
-  image: { base64: string } | undefined; // Update the type
-  setImage: (image: { base64: string } | undefined) => void; // Update the type
+  image: { base64: string } | undefined; // Update the type to allow either a string or undefined
+  setImage: (image: { base64: string } | undefined) => void; // Update the type to accept a string or undefined
   titleChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   messageChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
   creatorChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -25,6 +30,7 @@ interface FormProps {
   clearForm: () => void;
 }
 
+// Define the Form component
 const Form: React.FC<FormProps> = ({
   title,
   message,
@@ -42,6 +48,7 @@ const Form: React.FC<FormProps> = ({
         <FormPaper>
           <form autoComplete="off" noValidate>
             <Typography variant="h6">Creating a Memory</Typography>
+            {/* Textbox for entering the creator */}
             <FormTextBoxes
               name="creator"
               variant="outlined"
@@ -50,6 +57,7 @@ const Form: React.FC<FormProps> = ({
               value={creator}
               onChange={creatorChangeHandler}
             />
+            {/* Textbox for entering the title */}
             <FormTextBoxes
               name="title"
               variant="outlined"
@@ -58,6 +66,7 @@ const Form: React.FC<FormProps> = ({
               onChange={titleChangeHandler}
               value={title}
             />
+            {/* Textbox for entering the message */}
             <FormTextBoxes
               name="message"
               variant="outlined"
@@ -66,15 +75,17 @@ const Form: React.FC<FormProps> = ({
               onChange={messageChangeHandler}
               value={message}
             />
+            {/* File upload component using react-file-base64 */}
             <div>
               <FileBase64
                 type="file"
                 multiple={false}
-                onDone={({ base64 }: { base64: string }) =>
-                  setImage({ base64 })
+                onDone={
+                  ({ base64 }: { base64: string }) => setImage({ base64 }) // Set the image with the base64 string when a file is selected
                 }
               />
             </div>
+            {/* Button for submitting the form */}
             <FormSubmitButton
               variant="contained"
               color="primary"
@@ -84,6 +95,7 @@ const Form: React.FC<FormProps> = ({
             >
               Create Post
             </FormSubmitButton>
+            {/* Button for clearing the form */}
             <Button
               variant="contained"
               color="secondary"
