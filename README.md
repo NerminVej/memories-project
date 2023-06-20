@@ -1,8 +1,5 @@
 # MERN stack CRUD Application
 
-## A Full stack Social Media Application created using the MERN-Stack
-
-
 
 ## Introduction
 
