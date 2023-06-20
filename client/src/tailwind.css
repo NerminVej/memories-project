@@ -2,31 +2,37 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Styles for the like button */
 .like-button {
-  @apply bg-blue-500 text-white px-2 py-1 rounded mr-2;
+  @apply bg-blue-500 text-white px-2 py-1 rounded mr-2; /* Applies multiple utility classes to style the like button */
 }
 
+/* Styles for the delete button */
 .delete-button {
-  @apply bg-red-500 text-white px-2 py-1 rounded;
+  @apply bg-red-500 text-white px-2 py-1 rounded; /* Applies multiple utility classes to style the delete button */
 }
 
+/* Styles for the container */
 .container {
-  @apply max-w-2xl mx-auto px-4 py-8;
+  @apply max-w-2xl mx-auto px-4 py-8; /* Applies multiple utility classes to style the container */
 }
 
+/* Styles for the card */
 .card {
-  @apply bg-white shadow-md rounded-lg;
+  @apply bg-white shadow-md rounded-lg; /* Applies multiple utility classes to style the card */
 }
 
+/* Styles for the title */
 .title {
-    @apply text-3xl font-bold mb-2 text-gray-800;
+  @apply text-3xl font-bold mb-2 text-gray-800; /* Applies multiple utility classes to style the title */
 }
-  
-.message {
-    @apply text-lg mb-4 text-gray-600;
-}
-  
 
+/* Styles for the message */
+.message {
+  @apply text-lg mb-4 text-gray-600; /* Applies multiple utility classes to style the message */
+}
+
+/* Styles for the creator */
 .creator {
-  @apply text-sm text-gray-500 mb-4;
+  @apply text-sm text-gray-500 mb-4; /* Applies multiple utility classes to style the creator */
 }
